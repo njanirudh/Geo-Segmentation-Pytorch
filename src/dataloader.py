@@ -3,35 +3,59 @@ import cv2
 
 from glob import glob
 from pathlib import Path
+from typing import List
 
+import numpy as np
 import torch
 import torchvision.transforms as T
 from torch.utils.data.dataset import Dataset
+from src.utils.tiff_utils import tiff_to_nparray
 
 class SegDatasetLoader(Dataset):
-    def __init__(self, img_dir:str, mask_dir:str,
-                 augmentation:T=None):
-        self.img_dir = img_dir
-        self.mask_dir = mask_dir
+    """
+    Dataset loader for segmentation dataset.
+    """
 
-        self.folder_names = []
+    def __init__(self, dataset_path: str,
+                 augmentation: T):
+        """
+        Generates pytorch dataloader from folder.
+        :param dataset_path: path to dataset folder.
+        :param augmentation: image augmentations.
+        """
+        self.img_dir = os.path.join(dataset_path, "images")
+        self.mask_dir = os.path.join(dataset_path, "labels")
 
-    def __getitem__(self, idx):
+        self.folder_names = [f.stem for f in Path(self.img_dir).iterdir() if f.is_dir()]
 
-        current_img_path = self.folder_names[idx]
+    def __getitem__(self, idx) -> [np.array, np.array]:
+        """
+        Returns a pair of image and mask image.
+        :param idx: index of the image/mask pair.
+        :return: pair of np.array images.
+        """
+        current_img_name = self.folder_names[idx]
 
-        img_path =
-        mask_path =
+        img_path = os.path.join(self.img_dir, current_img_name, "07.tif")
+        mask_path = os.path.join(self.mask_dir, current_img_name, "dlt.tif")
 
-        image = cv2.imread(img_path, 1)
-        mask = cv2.imread(mask_path, 0)
+        image = tiff_to_nparray(img_path)
+        mask = tiff_to_nparray(mask_path)
 
-    def __len__(self):
-        pass
+        print(img_path, image.shape)
+        print(mask_path, mask.shape)
+
+        return image, mask
+
+    def __len__(self) -> int:
+        """
+        Total length of the dataset.
+        :return: integer length of the dataset
+        """
+        return len(self.folder_names)
 
 if __name__ == "__main__":
 
-    img_path = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/images/"
-    mask_path = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/images"
+    dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
-    seg_dataset = SegDatasetLoader(img_path, mask_path)
+    seg_dataset = SegDatasetLoader(dataset_pth,  None)
