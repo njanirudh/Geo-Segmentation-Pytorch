@@ -39,11 +39,11 @@ class SegDatasetLoader(Dataset):
         img_path = os.path.join(self.img_dir, current_img_name, "07.tif")
         mask_path = os.path.join(self.mask_dir, current_img_name, "dlt.tif")
 
-        image = tiff_to_nparray(img_path)
-        mask = tiff_to_nparray(mask_path)
+        image = tiff_to_nparray(img_path).astype(np.float32)[np.newaxis, ...]
+        mask = tiff_to_nparray(mask_path).astype(np.float32)[np.newaxis, ...]
 
-        print(img_path, image.shape)
-        print(mask_path, mask.shape)
+        # print(img_path, image.shape)
+        # print(mask_path, mask.shape)
 
         return image, mask
 
