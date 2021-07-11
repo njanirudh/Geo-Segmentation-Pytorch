@@ -16,13 +16,14 @@ class SegDatasetLoader(Dataset):
     Dataset loader for segmentation dataset.
     """
 
-    def __init__(self, dataset_path: str,
+    def __init__(self, dataset_path: str, batch_size: int,
                  augmentation: T):
         """
         Generates pytorch dataloader from folder.
         :param dataset_path: path to dataset folder.
         :param augmentation: image augmentations.
         """
+        self.batch_size = 1
         self.img_dir = os.path.join(dataset_path, "images")
         self.mask_dir = os.path.join(dataset_path, "labels")
 
@@ -58,4 +59,4 @@ if __name__ == "__main__":
 
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
-    seg_dataset = SegDatasetLoader(dataset_pth,  None)
+    seg_dataset = SegDatasetLoader(dataset_pth, 1, None)
