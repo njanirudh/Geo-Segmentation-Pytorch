@@ -3,7 +3,7 @@ import torch
 from torch.nn import BCEWithLogitsLoss
 import time
 
-from dataloader import SegDatasetLoader
+from seg_dataset import SegDatasetLoader
 from model.unet import UNET
 
 def train(model, train_dl, valid_dl, loss_fn, optimizer, acc_fn, epochs=1):
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
 
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
-    seg_dataset = SegDatasetLoader(dataset_pth, 1, None)
+    seg_dataset = SegDatasetLoader(dataset_pth)
 
 
     unet = UNET(12,1)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     # print(pred.shape)
 
     loss_fn = BCEWithLogitsLoss()
-    opt = torch.optim.Adam(unet.parameters(), 0.01)
+    opt = torch.optim.Adam(unet.parameters(), 0.0003)
     train_loss, val_loss = train(model=unet,
                                  train_dl=seg_dataset,
                                  valid_dl=seg_dataset,
