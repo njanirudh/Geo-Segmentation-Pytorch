@@ -1,6 +1,6 @@
 import pytorch_lightning as pl
 import torch
-from torch.nn import BCEWithLogitsLoss
+from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss
 from torch.utils.data import DataLoader
 
 from src.model.unet import UNET
@@ -26,9 +26,11 @@ class SegmentationModule(pl.LightningModule):
         super(SegmentationModule, self).__init__()
 
         self.model = UNET(in_channels, out_channels)
+        self.model.train(True)  # Set trainind mode = true
 
         self.val_loader, self.train_loader = None, None
-        self.trainer = None
+        self.num_train_imgs, self.num_val_imgs = None, None
+        self.trainer, self.curr_device = None, None
 
         self.loss_fn = BCEWithLogitsLoss()
         self.dataset_path = dataset_path
@@ -44,7 +46,7 @@ class SegmentationModule(pl.LightningModule):
         inputs, labels = batch
         self.curr_device = inputs.device
 
-        outputs, _ = self.forward(inputs)
+        outputs = self.forward(inputs)
         train_loss = self.loss_fn(inputs, outputs)
 
         return train_loss
@@ -53,7 +55,7 @@ class SegmentationModule(pl.LightningModule):
         inputs, labels = batch
         self.curr_device = inputs.device
 
-        outputs, _ = self.forward(inputs)
+        outputs = self.forward(inputs)
         val_loss = self.loss_fn(inputs, outputs)
 
         return val_loss
@@ -87,3 +89,12 @@ class SegmentationModule(pl.LightningModule):
         self.trainer.fit(self,
                          self.train_dataloader(),
                          self.val_dataloader())
+
+if __name__ == "__main__":
+    DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
+
+    model_trainer = SegmentationModule(in_channels=12,
+                                       out_channels=1,
+                                       batch_size=1,
+                                       dataset_path=DATASET_PATH)
+    model_trainer.train_model()

@@ -37,8 +37,8 @@ class SegDatasetLoader(Dataset):
         img_path = os.path.join(self.img_dir, current_img_name, "07.tif")
         mask_path = os.path.join(self.mask_dir, current_img_name, "dlt.tif")
 
-        image = tiff_to_nparray(img_path).astype(np.float32)[np.newaxis, ...]
-        mask = tiff_to_nparray(mask_path).astype(np.float32)[np.newaxis, ...]
+        image = tiff_to_nparray(img_path).astype(np.float32)
+        mask = tiff_to_nparray(mask_path).astype(np.float32)
 
         # print(img_path, image.shape)
         # print(mask_path, mask.shape)
@@ -57,3 +57,4 @@ if __name__ == "__main__":
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
     seg_dataset = SegDatasetLoader(dataset_pth)
+    seg_dataset[2]
