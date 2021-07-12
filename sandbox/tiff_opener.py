@@ -1,8 +1,4 @@
-import cv2
-import numpy as np
-
 import rasterio
-import matplotlib.pyplot as plt
 
 fp = r"../data/07.tif"
 img = rasterio.open(fp)

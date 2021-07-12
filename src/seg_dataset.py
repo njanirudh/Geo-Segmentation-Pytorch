@@ -1,15 +1,12 @@
 import os
-import cv2
-
-from glob import glob
 from pathlib import Path
-from typing import List
 
 import numpy as np
-import torch
 import torchvision.transforms as T
 from torch.utils.data.dataset import Dataset
+
 from src.utils.tiff_utils import tiff_to_nparray
+
 
 class SegDatasetLoader(Dataset):
     """
@@ -55,8 +52,8 @@ class SegDatasetLoader(Dataset):
         """
         return len(self.folder_names)
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
     seg_dataset = SegDatasetLoader(dataset_pth)

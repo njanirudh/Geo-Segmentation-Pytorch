@@ -1,10 +1,11 @@
-import numpy as np
-import torch
-from torch.nn import BCEWithLogitsLoss
 import time
 
-from seg_dataset import SegDatasetLoader
+import torch
+from torch.nn import BCEWithLogitsLoss
+
 from model.unet import UNET
+from seg_dataset import SegDatasetLoader
+
 
 def train(model, train_dl, valid_dl, loss_fn, optimizer, acc_fn, epochs=1):
     start = time.time()
@@ -58,12 +59,13 @@ def train(model, train_dl, valid_dl, loss_fn, optimizer, acc_fn, epochs=1):
                 # stats - whatever is the phase
                 acc = acc_fn(outputs, y)
 
-                running_acc  += acc * dataloader.batch_size
+                running_acc += acc * dataloader.batch_size
                 running_loss += loss * dataloader.batch_size
 
                 if step % 10 == 0:
                     # clear_output(wait=True)
-                    print('Current step: {}  Loss: {}  Acc: {}  AllocMem (Mb): {}'.format(step, loss, acc, torch.cuda.memory_allocated( ) /1024 /1024))
+                    print('Current step: {}  Loss: {}  Acc: {}  AllocMem (Mb): {}'.format(step, loss, acc,
+                                                                                          torch.cuda.memory_allocated() / 1024 / 1024))
                     # print(torch.cuda.memory_summary())
 
             epoch_loss = running_loss / len(dataloader.dataset)
@@ -71,24 +73,23 @@ def train(model, train_dl, valid_dl, loss_fn, optimizer, acc_fn, epochs=1):
 
             print('{} Loss: {:.4f} Acc: {}'.format(phase, epoch_loss, epoch_acc))
 
-            train_loss.append(epoch_loss) if phase=='train' else valid_loss.append(epoch_loss)
+            train_loss.append(epoch_loss) if phase == 'train' else valid_loss.append(epoch_loss)
 
     time_elapsed = time.time() - start
     print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
 
     return train_loss, valid_loss
 
+
 def acc_metric(predb, yb):
     return (predb.argmax(dim=1) == yb.cuda()).float().mean()
 
+
 if __name__ == "__main__":
-
-
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
     seg_dataset = SegDatasetLoader(dataset_pth)
 
-
-    unet = UNET(12,1)
+    unet = UNET(12, 1)
     xb, yb = next(iter(seg_dataset))
 
     print(xb.shape, yb.shape)

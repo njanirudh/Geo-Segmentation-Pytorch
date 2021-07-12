@@ -1,6 +1,6 @@
-import torch
-import matplotlib
 import pytorch_lightning as pl
+import torch
+from torch.nn import BCEWithLogitsLoss
 from torch.utils.data import DataLoader
 
 from src.model.unet import UNET
@@ -18,22 +18,24 @@ class SegmentationModule(pl.LightningModule):
     """
     Pytorch Lightning module for training segmentation.
     """
-    def __init__(self, in_channels: int, out_channels: int,
-                 dataset_path:str, batch_size: int=10,
-                 epochs: int=50, lr: float=0.003,
-                 gpu: int=1) -> None:
 
+    def __init__(self, in_channels: int, out_channels: int,
+                 dataset_path: str, batch_size: int = 10,
+                 epochs: int = 50, lr: float = 0.003,
+                 gpu: int = 1) -> None:
         super(SegmentationModule, self).__init__()
 
         self.model = UNET(in_channels, out_channels)
 
-        self.trainer: pl.Trainer = None
+        self.val_loader, self.train_loader = None, None
+        self.trainer = None
+
+        self.loss_fn = BCEWithLogitsLoss()
         self.dataset_path = dataset_path
         self.batch_size = batch_size
         self.epochs = epochs
         self.learning_rate = lr
         self.gpu = gpu
-
 
     def forward(self, input: Tensor, **kwargs) -> Tensor:
         return self.model(input)
@@ -43,7 +45,7 @@ class SegmentationModule(pl.LightningModule):
         self.curr_device = inputs.device
 
         outputs, _ = self.forward(inputs)
-        train_loss = self.model.loss(inputs, outputs)
+        train_loss = self.loss_fn(inputs, outputs)
 
         return train_loss
 
@@ -52,7 +54,7 @@ class SegmentationModule(pl.LightningModule):
         self.curr_device = inputs.device
 
         outputs, _ = self.forward(inputs)
-        val_loss = self.model.loss(inputs, outputs)
+        val_loss = self.loss_fn(inputs, outputs)
 
         return val_loss
 
@@ -85,6 +87,3 @@ class SegmentationModule(pl.LightningModule):
         self.trainer.fit(self,
                          self.train_dataloader(),
                          self.val_dataloader())
-
-
-
