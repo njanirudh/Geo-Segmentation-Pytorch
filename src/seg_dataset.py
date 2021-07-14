@@ -8,7 +8,7 @@ from torch.utils.data.dataset import Dataset
 from src.utils.tiff_utils import tiff_to_nparray
 
 
-class SegDatasetLoader(Dataset):
+class SegDataset(Dataset):
     """
     Dataset loader for segmentation dataset.
     """
@@ -38,7 +38,7 @@ class SegDatasetLoader(Dataset):
         mask_path = os.path.join(self.mask_dir, current_img_name, "dlt.tif")
 
         image = tiff_to_nparray(img_path).astype(np.float32)
-        mask = tiff_to_nparray(mask_path).astype(np.float32)
+        mask = tiff_to_nparray(mask_path).astype(np.float32).squeeze(0)
 
         # print(img_path, image.shape)
         # print(mask_path, mask.shape)
@@ -56,5 +56,6 @@ class SegDatasetLoader(Dataset):
 if __name__ == "__main__":
     dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
-    seg_dataset = SegDatasetLoader(dataset_pth)
-    seg_dataset[2]
+    seg_dataset = SegDataset(dataset_pth)
+    img, mask = seg_dataset[8]
+    print(np.unique(mask))
