@@ -4,7 +4,7 @@ from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss
 from torch.utils.data import DataLoader
 
 from src.model.unet import UNET
-from src.seg_dataset import SegDatasetLoader
+from src.seg_dataset import SegDataset
 
 # Setting seed for reproducibility
 seed = 666
@@ -32,7 +32,7 @@ class SegmentationModule(pl.LightningModule):
         self.num_train_imgs, self.num_val_imgs = None, None
         self.trainer, self.curr_device = None, None
 
-        self.loss_fn = BCEWithLogitsLoss()
+        self.loss_fn = CrossEntropyLoss()
         self.dataset_path = dataset_path
         self.batch_size = batch_size
         self.epochs = epochs
@@ -47,7 +47,7 @@ class SegmentationModule(pl.LightningModule):
         self.curr_device = inputs.device
 
         outputs = self.forward(inputs)
-        train_loss = self.loss_fn(inputs, outputs)
+        train_loss = self.loss_fn(outputs, labels.long())
 
         return train_loss
 
@@ -56,7 +56,7 @@ class SegmentationModule(pl.LightningModule):
         self.curr_device = inputs.device
 
         outputs = self.forward(inputs)
-        val_loss = self.loss_fn(inputs, outputs)
+        val_loss = self.loss_fn(outputs, labels.long())
 
         return val_loss
 
@@ -65,7 +65,7 @@ class SegmentationModule(pl.LightningModule):
         return optimizer
 
     def train_dataloader(self):
-        train_dataset = SegDatasetLoader(self.dataset_path)
+        train_dataset = SegDataset(self.dataset_path)
 
         self.train_loader = DataLoader(train_dataset,
                                        batch_size=self.batch_size,
@@ -75,7 +75,7 @@ class SegmentationModule(pl.LightningModule):
         return self.train_loader
 
     def val_dataloader(self):
-        val_dataset = SegDatasetLoader(self.dataset_path)
+        val_dataset = SegDataset(self.dataset_path)
 
         self.val_loader = DataLoader(val_dataset,
                                      batch_size=self.batch_size,
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
     model_trainer = SegmentationModule(in_channels=12,
-                                       out_channels=1,
-                                       batch_size=1,
+                                       out_channels=3,
+                                       batch_size=10,
                                        dataset_path=DATASET_PATH)
     model_trainer.train_model()
