@@ -1,10 +1,8 @@
 import time
-import numpy as np
 
 import torch
-from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss
+from torch.nn import CrossEntropyLoss
 from torch.utils.data import DataLoader
-from torchsummary import summary
 
 from src.model.unet import UNET
 from src.seg_dataset import SegDataset
@@ -81,7 +79,6 @@ def train(model, train_dl, valid_dl, loss_fn, optimizer, acc_fn, epochs=1):
                     print('Current step: {}  Loss: {}  Acc: {}  AllocMem (Mb): {}'.format(step, loss, acc,
                                                                                           torch.cuda.memory_allocated() / 1024 / 1024))
                     # print(torch.cuda.memory_summary())
-
 
             epoch_loss = running_loss / len(dataloader.dataset)
             epoch_acc = running_acc / len(dataloader.dataset)

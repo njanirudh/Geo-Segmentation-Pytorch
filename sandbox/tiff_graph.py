@@ -24,11 +24,9 @@ if __name__ == "__main__":
 
     tiff_np_img_gt = tiff_to_nparray(fp_gt)
     rgb_image_gt = np.swapaxes(tiff_np_img_gt, 0, 2)
-    rgb_image_gt = np.reshape(rgb_image_gt,(64,64)).T
+    rgb_image_gt = np.reshape(rgb_image_gt, (64, 64)).T
 
     plt.imshow(rgb_img)
     # plt.imshow(rgb_image, cmap='gray')
-    plt.imsave("../assets/rgb.png",rgb_img,cmap='gray')
+    plt.imsave("../assets/rgb.png", rgb_img, cmap='gray')
     plt.show()
-
-

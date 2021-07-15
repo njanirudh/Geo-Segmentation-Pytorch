@@ -25,7 +25,7 @@ class SegDataset(Dataset):
         self.batch_size = 1
         self.use_rgb = use_rgb
         self.validation = validation
-        self.num_validation_images = 500 #We use 500 images for validation
+        self.num_validation_images = 500  # We use 500 images for validation
 
         self.img_dir = os.path.join(dataset_path, "images")
         self.mask_dir = os.path.join(dataset_path, "labels")
@@ -35,7 +35,6 @@ class SegDataset(Dataset):
             self.folder_names = folder_list[:-self.num_validation_images]
         else:
             self.folder_names = folder_list[-self.num_validation_images:]
-
 
     def __getitem__(self, idx) -> [np.array, np.array]:
         """
@@ -50,9 +49,11 @@ class SegDataset(Dataset):
 
         # Use only RGB channels
         if self.use_rgb:
+            print("[INFO] Using only channels (4,3,2)")
             image = tiff_to_nparray(img_path).astype(np.float32)[2:5]
             mask = tiff_to_nparray(mask_path).astype(np.float32).squeeze(0)
         else:
+            print("[INFO] Using all channels (1-12)")
             image = tiff_to_nparray(img_path).astype(np.float32)
             mask = tiff_to_nparray(mask_path).astype(np.float32).squeeze(0)
 
