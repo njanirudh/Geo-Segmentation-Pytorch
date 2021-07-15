@@ -3,8 +3,13 @@ import torch
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss
 from torch.utils.data import DataLoader
 
+from pytorch_lightning import Trainer
+from pytorch_lightning.loggers import TensorBoardLogger
+logger = TensorBoardLogger("tb_logs", name="my_model")
+
 from src.model.unet import UNET
 from src.seg_dataset import SegDataset
+from utils.checkpoint_utils import PeriodicCheckpoint
 
 # Setting seed for reproducibility
 seed = 666
@@ -16,21 +21,35 @@ Module = torch.nn.Module
 
 class SegmentationModule(pl.LightningModule):
     """
-    Pytorch Lightning module for training segmentation.
+    Pytorch Lightning module for training the
+    UNet segmentation model.
     """
 
     def __init__(self, in_channels: int, out_channels: int,
-                 dataset_path: str, batch_size: int = 10,
-                 epochs: int = 50, lr: float = 0.003,
-                 gpu: int = 1) -> None:
+                 dataset_path: str, train_mode: bool = True,
+                 batch_size: int = 10, epochs: int = 50,
+                 lr: float = 0.003, gpu: int = 1) -> None:
+        """
+        :param in_channels: Total channels C in the input image.
+        :param out_channels: Output channels N (Equal to the total number of labels)
+        :param dataset_path: Path to dataset path.
+        :param train_mode: Sets model to training or inference mode.
+        :param batch_size: Batch size during training.
+        :param epochs: Total epochs for training. (default 50)
+        :param lr: Learning rate (default 0.003)
+        :param gpu: Set total gpus to use (default 1)
+        """
         super(SegmentationModule, self).__init__()
 
         self.model = UNET(in_channels, out_channels)
-        self.model.train(True)  # Set trainind mode = true
+        self.model.train(train_mode)  # Set training mode = true
 
         self.val_loader, self.train_loader = None, None
         self.num_train_imgs, self.num_val_imgs = None, None
         self.trainer, self.curr_device = None, None
+
+        # Model checkpoint saving every 1000 steps
+        self.periodic_chkp = PeriodicCheckpoint(1000)
 
         self.loss_fn = CrossEntropyLoss()
         self.dataset_path = dataset_path
@@ -85,7 +104,8 @@ class SegmentationModule(pl.LightningModule):
         return self.val_loader
 
     def train_model(self):
-        self.trainer = pl.Trainer(gpus=self.gpu, max_epochs=self.epochs)
+        self.trainer = pl.Trainer(gpus=self.gpu, max_epochs=self.epochs,
+                                  callbacks=self.periodic_chkp)
         self.trainer.fit(self,
                          self.train_dataloader(),
                          self.val_dataloader())
@@ -93,8 +113,9 @@ class SegmentationModule(pl.LightningModule):
 if __name__ == "__main__":
     DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
 
+
     model_trainer = SegmentationModule(in_channels=12,
                                        out_channels=3,
-                                       batch_size=10,
+                                       batch_size=20,
                                        dataset_path=DATASET_PATH)
     model_trainer.train_model()
