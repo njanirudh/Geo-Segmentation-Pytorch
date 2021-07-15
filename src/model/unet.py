@@ -20,11 +20,12 @@ class UNET(nn.Module):
         self.upconv1 = self.expand_block(32 * 2, out_channels, 3, 1)
 
     def __call__(self, x):
-        # downsampling part
+        # downsampling
         conv1 = self.conv1(x)
         conv2 = self.conv2(conv1)
         conv3 = self.conv3(conv2)
 
+        # upsampling
         upconv3 = self.upconv3(conv3)
         upconv2 = self.upconv2(torch.cat([upconv3, conv2], 1))
         upconv1 = self.upconv1(torch.cat([upconv2, conv1], 1))
