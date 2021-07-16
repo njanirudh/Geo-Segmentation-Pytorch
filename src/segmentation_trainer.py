@@ -49,7 +49,7 @@ class SegmentationModule(pl.LightningModule):
         self.trainer, self.curr_device = None, None
 
         # Model checkpoint saving every 1000 steps
-        self.periodic_chkp = PeriodicCheckpoint(1000)
+        self.periodic_chkp = PeriodicCheckpoint(500)
 
         self.loss_fn = CrossEntropyLoss()
         self.dataset_path = dataset_path
