@@ -50,12 +50,12 @@ class SegDataset(Dataset):
         # Use only RGB channels
         if self.use_rgb:
             # print("[INFO] Using only channels (4,3,2)")
-            image = tiff_to_nparray(img_path).astype(np.float32)[2:5]
-            mask = tiff_to_nparray(mask_path).astype(np.float32).squeeze(0)
+            image = tiff_to_nparray(img_path)[2:5]
+            mask = tiff_to_nparray(mask_path).squeeze(0)
         else:
             # print("[INFO] Using all channels (1-12)")
-            image = tiff_to_nparray(img_path).astype(np.float32)
-            mask = tiff_to_nparray(mask_path).astype(np.float32).squeeze(0)
+            image = tiff_to_nparray(img_path)
+            mask = tiff_to_nparray(mask_path).squeeze(0)
 
         # Remove labels with error
         if np.any(mask > 2):

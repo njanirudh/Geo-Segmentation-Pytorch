@@ -9,4 +9,4 @@ def tiff_to_nparray(path: str) -> np.array:
     :return:
     """
     multilayer_img = rasterio.open(path)
-    return multilayer_img.read()
+    return multilayer_img.read().astype(np.float32)
