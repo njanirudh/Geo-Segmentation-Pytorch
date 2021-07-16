@@ -7,9 +7,12 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 
 
 class PeriodicCheckpoint(ModelCheckpoint):
-    def __init__(self, every: int):
+    """
+    Callback to create checkpoint every 'n' steps.
+    """
+    def __init__(self, n: int):
         super().__init__()
-        self.every = every
+        self.every = n
 
     def on_train_batch_end(
             self, trainer: pl.Trainer, pl_module: pl.LightningModule, *args, **kwargs
