@@ -21,6 +21,8 @@ The input 'tif.' image contains 12 channels.
 The (left) image shows the output of the model trained only on the RGB channels (4,3,2)    <br />
 The (right) image shows the output of model trained on all the channels (1-12)
 
+Since the model is not trained till convergance, the results are not directly usable.
+
 #### References
 1. https://pytorch-lightning.readthedocs.io/en/latest/
 1. https://medium.com/analytics-vidhya/creating-a-very-simple-u-net-model-with-pytorch-for-semantic-segmentation-of-satellite-images-223aa216e705
