@@ -16,6 +16,23 @@ The input 'tif.' image contains 12 channels.
 
 <img width="240" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/12_img_collage.png" title="Input Image Channels">
 
+From exif data [3]: <br />
+* Pixel Scale 
+< 10 10 0 >
+* Model Tie Point
+< 0 0 0 726830 5544990 0 >
+* Gt Model Type
+< Projected >
+* Gt Raster Type
+< Pixel Is Area >
+* Gt Citation
+< WGS 84 / UTM zone 31N >
+* Geog Citation
+< WGS 84 >
+* Geog Angular Units
+< Angular Degree >
+
+
 ### Result
 <img width="480" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/results.png" title="Input Image Channels">
 The (left) image shows the output of the model trained only on the RGB channels (4,3,2)    <br />
@@ -26,3 +43,5 @@ Since the model is not trained till convergance, the results are not directly us
 #### References
 1. https://pytorch-lightning.readthedocs.io/en/latest/
 1. https://medium.com/analytics-vidhya/creating-a-very-simple-u-net-model-with-pytorch-for-semantic-segmentation-of-satellite-images-223aa216e705
+1. https://www.metadata2go.com
+1. https://www.pcigeomatics.com/geomatica-help/COMMON/concepts/TiePoint_explain.html
