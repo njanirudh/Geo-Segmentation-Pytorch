@@ -9,6 +9,7 @@ Goal of this project is to prototype and showcase a segmentation model on a cust
 * UNet architecture similar to [2] was used for the task.
   <img width="640" height="240" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/unet_architecture.png" title="Input Image Channels">
 * The trainer supports both 3 channels (RGB) and 12 channels (bands) for training and inference.
+* Code is designed to be modular. This will make prototyping different models, hyperparameter tuning easier.  
 
 ### Input Image
 The input 'tif.' image contains 12 channels.  
