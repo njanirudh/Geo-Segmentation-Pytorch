@@ -16,7 +16,7 @@ The input 'tif.' image contains 12 channels.
 <img width="240" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/12_img_collage.png" title="Input Image Channels">
 
 ### Result
-<img width="640" height="480" src="" title="Input Image Channels">
+<img width="640" height="480" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/results.png" title="Input Image Channels">
 
 #### References
 1. https://pytorch-lightning.readthedocs.io/en/latest/
