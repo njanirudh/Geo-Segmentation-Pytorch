@@ -6,7 +6,7 @@ Goal of this project is to prototype and showcase a segmentation model on a cust
 * Pytorch along with Pytorch Lightning [1] is used for prototyping the model. 
   Pytorch Lightning is used to scale the model training on multiple GPUs/TPUs.        
 * Due to time / computational constraints, the model was trained only for 50 epochs and the results obtained can be further improved.
-* UNet architecture similar to [2] was used for the task.
+* UNet architecture similar to [2] was used for the task. Due to unavailability of pre-trained models trained on required classes, we preferred custom model.
   <img width="640" height="240" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/unet_architecture.png" title="Input Image Channels">
 * The trainer supports both 3 channels (RGB) and 12 channels (bands) for training and inference.
 * Code is designed to be modular. This will make prototyping different models, hyperparameter tuning easier.  
