@@ -15,6 +15,7 @@ The input 'tif.' image contains 12 channels.
 
 <img width="240" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/12_img_collage.png" title="Input Image Channels shown in grey map">
 
+-----------------------------------------
 Individual channels with countours:      
 <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c0_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c0_c.png" width="100"/> 
 
@@ -40,6 +41,7 @@ Individual channels with countours:
 
 <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c11_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c11_c.png" width="100"/> 
 
+-----------------------------------------
 RGB image (Channel 4,3,2):     
 <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/rgb.png" width="200"/>
 
@@ -51,3 +53,4 @@ The (right) image shows the output of model trained on all the channels (1-12)
 #### References
 1. https://pytorch-lightning.readthedocs.io/en/latest/
 1. https://medium.com/analytics-vidhya/creating-a-very-simple-u-net-model-with-pytorch-for-semantic-segmentation-of-satellite-images-223aa216e705
+1. https://rasterio.readthedocs.io/en/latest/topics/plotting.html
