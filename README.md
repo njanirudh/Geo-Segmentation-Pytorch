@@ -13,9 +13,10 @@ Goal of this project is to prototype and showcase a segmentation model on a cust
   
 ### Code
 * 'src/main.py' can be used for training and inference.
-* Due to time constraint we have not written a commandline application for running the code.  
-* DATASET_PATH can be replaced by path to {Dataset}. The dataset folder contains {Dataset/images} and {Dataset/labels}.
+* 'src/sandbox' contains prototype code.
 * Code is designed to be modular. This will make prototyping different models, hyperparameter tuning easier.  
+* Due to time constraint we have not written a commandline application for running training and inference.  
+* DATASET_PATH can be replaced by path to {Dataset}. The dataset folder contains {Dataset/images} and {Dataset/labels}.
 * The code for graphing loss values are still in progress. 
 
 ### Input Image
