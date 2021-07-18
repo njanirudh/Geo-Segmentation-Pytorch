@@ -52,6 +52,8 @@ RGB image (Channel 4,3,2):
 <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/rgb.png" width="200"/>
 
 ### Result
+Example output after inference.      
+
 <img width="480" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/results.png" title="Input Image Channels">
 The (left) image shows the output of the model trained only on the RGB channels (4,3,2)    <br />
 The (right) image shows the output of model trained on all the channels (1-12)
