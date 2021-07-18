@@ -48,7 +48,7 @@ class SegmentationModule(pl.LightningModule):
         self.num_train_imgs, self.num_val_imgs = None, None
         self.trainer, self.curr_device = None, None
 
-        # Model checkpoint saving every 1000 steps
+        # Model checkpoint saving every 500 steps
         self.periodic_chkp = PeriodicCheckpoint(500)
 
         self.loss_fn = CrossEntropyLoss()
@@ -117,7 +117,7 @@ class SegmentationModule(pl.LightningModule):
 
 
 if __name__ == "__main__":
-    DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
+    DATASET_PATH = "~/Vision-Impulse/Dataset/"
 
     model_trainer = SegmentationModule(in_channels=12,
                                        out_channels=3,
