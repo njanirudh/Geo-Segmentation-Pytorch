@@ -13,7 +13,35 @@ Goal of this project is to prototype and showcase a segmentation model on a cust
 ### Input Image
 The input 'tif.' image contains 12 channels.  
 
-<img width="240" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/12_img_collage.png" title="Input Image Channels">
+<img width="240" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/12_img_collage.png" title="Input Image Channels shown in grey map">
+
+Individual channels with countours:      
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c0_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c0_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c1_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c1_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c2_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c2_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c3_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c3_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c4_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c4_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c5_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c5_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c6_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c6_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c7_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c7_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c8_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c8_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c9_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c9_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c10_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c10_c.png" width="100"/> 
+
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c11_p.png" width="100"/> <img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/c11_c.png" width="100"/> 
+
+RGB image (Channel 4,3,2):     
+<img src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/graphs/rgb.png" width="200"/>
 
 ### Result
 <img width="480" height="200" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/results.png" title="Input Image Channels">
