@@ -47,9 +47,9 @@ class SegDataset(Dataset):
         img_path = os.path.join(self.img_dir, current_img_name, "07.tif")
         mask_path = os.path.join(self.mask_dir, current_img_name, "dlt.tif")
 
-        # Use only RGB channels
+        # Use only BGR channels
         if self.use_rgb:
-            # print("[INFO] Using only channels (4,3,2)")
+            # print("[INFO] Using only BGR channels (4,3,2)")
             image = tiff_to_nparray(img_path)[2:5]
             mask = tiff_to_nparray(mask_path).squeeze(0)
         else:
@@ -76,7 +76,7 @@ class SegDataset(Dataset):
 
 
 if __name__ == "__main__":
-    dataset_pth = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
+    dataset_pth = "~/Vision-Impulse/Dataset/"
 
     seg_dataset = SegDataset(dataset_pth)
     print(len(seg_dataset))
