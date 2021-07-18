@@ -13,7 +13,7 @@ if __name__ == "__main__":
     # ---------------------------------------------------------------
     # --------------- TRAINING CODE (12 bands) ----------------------
     # ---------------------------------------------------------------
-    # DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
+    # DATASET_PATH = "~/Vision-Impulse/Dataset/"
     # seg_trainer = SegmentationModule(dataset_path=DATASET_PATH,
     #                                  in_channels=3,
     #                                  out_channels=3,
@@ -28,12 +28,12 @@ if __name__ == "__main__":
     # ---------------- INFERENCE CODE (12 bands) -----------------------
     # -----------------------------------------------------------------
     # input_img = torch.rand((1, 12, 64, 64))
-    DATASET_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Dataset/"
+    DATASET_PATH = "~/Vision-Impulse/Dataset/"
     np_img = tiff_to_nparray("../data/07.tif") # Test Image
     np_img = np_img[np.newaxis, ...]
     input_img = torch.from_numpy(np_img)
 
-    MODEL_CHKP_PATH = "/home/anirudh/NJ/Interview/Vision-Impulse/Vision-Impulse-Test/src/" \
+    MODEL_CHKP_PATH = "~/Vision-Impulse/Vision-Impulse-Test/src/" \
                       "lightning_logs/version_0/checkpoints/latest-9500.ckpt"
     seg_inference = SegmentationModule(dataset_path=DATASET_PATH,
                                        in_channels=12,
