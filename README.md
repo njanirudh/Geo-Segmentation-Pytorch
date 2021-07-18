@@ -9,6 +9,12 @@ Goal of this project is to prototype and showcase a segmentation model on a cust
 * UNet architecture similar to [2] was used for the task.
   <img width="640" height="240" src="https://github.com/njanirudh/Vision-Impulse-Test/blob/feature-segmentation/assets/unet_architecture.png" title="Input Image Channels">
 * The trainer supports both 3 channels (RGB) and 12 channels (bands) for training and inference.
+* Note: We used [0-11] zero indexed counting for channels/bands.
+  
+### Code
+* 'src/main.py' can be used for training and inference.
+* Due to time constraint we have not written a commandline application for running the code.  
+* DATASET_PATH can be replaced by path to {Dataset}. The dataset folder contains {Dataset/images} and {Dataset/labels}.
 
 ### Input Image
 The input 'tif.' image contains 12 channels.  
