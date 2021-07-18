@@ -17,23 +17,23 @@ if __name__ == "__main__":
     # print(rgb_img.shape)
 
     # Channel Img -------------------------------
-    # tiff_np_img = tiff_to_nparray(fp)
-    # rgb_img = tiff_np_img[11, :, :]
-    # # rgb_img = np.swapaxes(rgb_img, 0, 2)
-    # print(rgb_img.shape)
+    tiff_np_img = tiff_to_nparray(fp)
+    rgb_img = tiff_np_img[3, :, :]
+    # rgb_img = np.swapaxes(rgb_img, 0, 2)
+    print(rgb_img.shape)
 
-    # plt.imshow(rgb_img)
-    # # plt.imshow(rgb_image, cmap='gray')
-    # plt.imsave("../assets/rgb.png", rgb_img, cmap='gray')
-    # plt.show()
-
-
-    tiff_np_img_gt = tiff_to_nparray(fp_gt)
-    print(tiff_np_img_gt.shape)
-    rgb_image_gt = np.swapaxes(tiff_np_img_gt, 0, 2)
-    rgb_image_gt = np.reshape(rgb_image_gt, (64, 64)).T
-
-    plt.imshow(rgb_image_gt)
-    # plt.imshow(rgb_image, cmap='gray')
+    plt.imshow(rgb_img)
+    plt.imshow(rgb_img, cmap='Greens')
     # plt.imsave("../assets/rgb.png", rgb_img, cmap='gray')
     plt.show()
+
+
+    # tiff_np_img_gt = tiff_to_nparray(fp_gt)
+    # print(tiff_np_img_gt.shape)
+    # rgb_image_gt = np.swapaxes(tiff_np_img_gt, 0, 2)
+    # rgb_image_gt = np.reshape(rgb_image_gt, (64, 64)).T
+
+    # plt.imshow(rgb_image_gt)
+    # plt.imshow(rgb_image, cmap='gray')
+    # plt.imsave("../assets/rgb.png", rgb_img, cmap='gray')
+    # plt.show()
