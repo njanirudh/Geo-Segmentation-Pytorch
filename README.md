@@ -58,7 +58,7 @@ Example output after inference.
 The (left) image shows the output of the model trained only on the RGB channels (4,3,2)    <br />
 The (right) image shows the output of model trained on all the channels (1-12)
 
-#### References
+### References
 1. https://pytorch-lightning.readthedocs.io/en/latest/
 1. https://medium.com/analytics-vidhya/creating-a-very-simple-u-net-model-with-pytorch-for-semantic-segmentation-of-satellite-images-223aa216e705
 1. https://rasterio.readthedocs.io/en/latest/topics/plotting.html
