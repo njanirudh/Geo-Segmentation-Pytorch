@@ -1,5 +1,4 @@
-# Vision Impulse Test
-
+# Geo Segmentation 
 Goal of this project is to prototype and showcase a segmentation model on a custom geo-dataset. 
 
 ### Design Choices
